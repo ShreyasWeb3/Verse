@@ -75,12 +75,12 @@ const Login = () => {
   };
 
   return (
-    <div className="">
+    <div >
       <Header />
       <div className="absolute w-full h-full">
         <img
           src={bgImage}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover "
           alt="Login background"
         />
       </div>

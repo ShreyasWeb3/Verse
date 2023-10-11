@@ -13,13 +13,15 @@ const VideoBackground = ({ movieId }) => {
     setIsMuted((prevMuted) => !prevMuted);
   };
 
-  if (!trailer) return null;
+  if (!trailer || trailer.length === 0) {
+    return null; 
+  }
 
   return (
     <div>
       <iframe
         className="w-screen aspect-video"
-        src={`https://www.youtube.com/embed/${trailer[0].key}?autoplay=1&mute=${isMuted ? 1 : 0}&fs=0&iv_load_policy=3`}
+        src={`https://www.youtube.com/embed/${trailer[0].key}?autoplay=1&mute=${isMuted ? 1 : 0}&fs=0&iv_load_policy=3&rel=0`}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       ></iframe>

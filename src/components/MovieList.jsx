@@ -1,18 +1,33 @@
+import { useState } from "react";
 import MovieCard from "./MovieCard";
+import {useDispatch} from 'react-redux';
+import {addSelectedMovie} from '../utils/movieSlice'
 
-const MovieList = ({ movies }) => {
-  console.log(movies);
+const MovieList = ({ movies, title, onMovieCardClick }) => {
+  const [currentMovie, setCurrentMovie] = useState(null);
+  const dispatch = useDispatch((store) => store.movies?.selectedMovie)
+  const handleMovieCardClick = (movieId, title, movieInfo) => {
+    setCurrentMovie({ movieId, title, movieInfo });
+  };
+
+  dispatch(addSelectedMovie(currentMovie));
+
   return (
     <>
-      <h2 className="text-white">Trending Now</h2>
-      <div className="flex overflow-x-scroll">
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            backdropPath={movie.backdrop_path}
-            title={movie.title}
-          />
-        ))}
+      <h2 className="text-white px-4 py-2">{title}</h2>
+      <div className="flex">
+        <div className="flex  ">
+          {movies.slice(0, 7).map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movieId={movie.id}
+              movieInfo={movie.overview}
+              posterPath={movie.poster_path}
+              title={movie.title}
+              onMovieCardClick={handleMovieCardClick}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

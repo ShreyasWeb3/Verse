@@ -1,14 +1,14 @@
 import { IMAGE_CDN } from "../utils/constants";
 
-const MovieCard = ({ backdropPath, title }) => {
+const MovieCard = ({movieId,movieInfo, posterPath, title,onMovieCardClick }) => {
   return (
     <div>
-      {/* <p className="">{title}</p> */}
       <img
-        className="p-1 rounded-md "
-        src={`${IMAGE_CDN}/w185/${backdropPath}`}
+        className=" w-full h-auto p-1 rounded-md cursor-pointer"
+        src={`${IMAGE_CDN}/w500/${posterPath}`}
         alt={title}
-      />
+        onClick={() => onMovieCardClick(movieId,title,movieInfo)}
+        />
     </div>
   );
 };

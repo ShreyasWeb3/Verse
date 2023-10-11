@@ -9,9 +9,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector , useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 
 const Header = () => {
@@ -41,13 +40,14 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+
   return (
     <div className="bg-black text-white">
-      <div className="absolute  px-8 py-2 bg-gradient-to-b from-black z-10">
-        <img className="w-30 ml-3 " src={Logo} alt="App Logo" />
-      </div>
+        <div className="absolute  px-8 py-2 bg-gradient-to-b from-black z-10">
+          <img className="w-30 ml-3 " src={Logo} alt="App Logo" />
+        </div>
       {user && (
-        <div className="flex space-x-5 justify-around py-6 ">
+        <div className="flex md:space-x-1 md:text-sm lg:space-x-5 md:justify-end lg:justify-around py-6 ">
           <div className="flex space-x-5 ">
             <p className="ml-8">Home</p>
             <p>TV Shows</p>
@@ -57,12 +57,19 @@ const Header = () => {
             <p>Browse by Language</p>
           </div>
           <div className="flex space-x-5 ">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-            <img className="-mt-2" src={profileBlueLogo} alt="Profile Icon" />
+            <Link to="/search">
+            <button
+              className="-mt-1 p-2 mx-4 bg-[#e50914] rounded-xl "
+            >
+              <FontAwesomeIcon className="pr-2" icon={faMagnifyingGlass} />
+              GPT Search
+            </button>
+            </Link>
+            <img className=" w-7 h-7" src={profileBlueLogo} alt="Profile Icon" />
             <p>{user?.displayName}</p>
-            <FontAwesomeIcon icon={faBell} />
+            <FontAwesomeIcon className="mt-1" icon={faBell} />
             <FontAwesomeIcon
-              className="cursor-pointer"
+              className="cursor-pointer mt-1"
               onClick={handleSignOut}
               icon={faRightFromBracket}
             />
