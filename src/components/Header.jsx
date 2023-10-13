@@ -4,13 +4,12 @@ import profileBlueLogo from "../assetts/profileBlueLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
-  faBell,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector , useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 
 const Header = () => {
@@ -40,43 +39,45 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
-
   return (
-    <div className="bg-black text-white">
-        <div className="absolute  px-8 py-2 bg-gradient-to-b from-black z-10">
-          <img className="w-30 ml-3 " src={Logo} alt="App Logo" />
-        </div>
+    <>
+      <div className="absolute px-4 z-10">
+        <img className="w-35 ml-3" src={Logo} alt="App Logo" />
+      </div>
       {user && (
-        <div className="flex md:space-x-1 md:text-sm lg:space-x-5 md:justify-end lg:justify-around py-6 ">
-          <div className="flex space-x-5 ">
-            <p className="ml-8">Home</p>
-            <p>TV Shows</p>
-            <p>Movies</p>
-            <p>New & Popular</p>
-            <p>My List</p>
-            <p>Browse by Language</p>
-          </div>
-          <div className="flex space-x-5 ">
-            <Link to="/search">
-            <button
-              className="-mt-1 p-2 mx-4 bg-[#e50914] rounded-xl "
-            >
-              <FontAwesomeIcon className="pr-2" icon={faMagnifyingGlass} />
-              GPT Search
-            </button>
-            </Link>
-            <img className=" w-7 h-7" src={profileBlueLogo} alt="Profile Icon" />
-            <p>{user?.displayName}</p>
-            <FontAwesomeIcon className="mt-1" icon={faBell} />
-            <FontAwesomeIcon
-              className="cursor-pointer mt-1"
-              onClick={handleSignOut}
-              icon={faRightFromBracket}
-            />
+        <div className=" flex justify-between text-white pt-6">
+          <div className="px-4"></div>
+          <div className="flex items-center md:space-x-5 md:mr-6 ">
+            <div className="flex space-x-4 justify-around">
+              <Link to="/shows">
+                <p className="cursor-pointer">Shows</p>
+              </Link>
+              <p>Movies</p>
+            </div>
+            <div className="flex space-x-4 items-center">
+              <Link to="/search">
+                <button className="p-1 ml-3 md:ml-0 md:p-2 text-xs md:text-md bg-[#e50914] rounded-lg">
+                  <FontAwesomeIcon className="pr-2" icon={faMagnifyingGlass} />
+                  AI Search
+                </button>
+              </Link>
+              <img
+                className="w-7 h-7 hidden md:inline rounded-sm"
+                src={profileBlueLogo}
+                alt="Profile Icon"
+              />
+              <p className="hidden md:block">{user?.displayName}</p>
+              <FontAwesomeIcon
+                className="cursor-pointer pr-4 "
+                onClick={handleSignOut}
+                icon={faRightFromBracket}
+              />
+            </div>
+            <div className="fixed -z-50 w-full h-full inset-0 bg-black "></div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

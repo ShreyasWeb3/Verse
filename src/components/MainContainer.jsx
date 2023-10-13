@@ -17,7 +17,7 @@ const MainContainer = () => {
   if (!mainMovie) return null;
 
   return (
-    <div>
+    <div >
       <VideoTitle title={mainMovie.original_title} overview={mainMovie.overview} />
       <VideoBackground movieId={mainMovie.id} />
     </div>
