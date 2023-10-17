@@ -8,30 +8,41 @@ const SecondaryContainer = () => {
   const popularMovies = useSelector((store) => store.movies?.popularMovies);
   const topRatedMovies = useSelector((store) => store.movies?.topRatedMovies);
   const upcomingMovies = useSelector((store) => store.movies?.upcomingMovies);
-  const airingTodayShows = useSelector((store) => store.shows?.airingTodayShows)
-  const onTheAirShows = useSelector((store) => store.shows?.onTheAirShows)
-  const popularShows = useSelector((store) => store.shows?.popularShows)
-  const topRatedShows = useSelector((store) => store.shows?.topRatedShows)
-
+  const airingTodayShows = useSelector(
+    (store) => store.shows?.airingTodayShows
+  );
+  const onTheAirShows = useSelector((store) => store.shows?.onTheAirShows);
+  const popularShows = useSelector((store) => store.shows?.popularShows);
+  const topRatedShows = useSelector((store) => store.shows?.topRatedShows);
+  const showsToggle = useSelector((store) => store.shows?.shows);
 
   if (!nowPlayingMovies) return;
   if (!popularMovies) return;
   if (!topRatedMovies) return;
   if (!upcomingMovies) return;
 
-  return (
-    <>
-      <div className="bg-black">
-        <MovieList title="Now Playing" movies={nowPlayingMovies} />
-        <MovieList title="Upcoming Movies" movies={upcomingMovies} />
-        <MovieList title="Hollywood Movies" movies={popularMovies} />
-        <MovieList title="Airing Today" movies={airingTodayShows} />
-        <MovieList title="On the Air" movies={onTheAirShows} />
-        <MovieList title="Popular Shows" movies={popularShows} />
-        <MovieList title="Top Rated Shows" movies={topRatedShows} />
-      </div>
-    </>
-  );
+  if (showsToggle) {
+    return (
+      <>
+        <div className="bg-black">
+          <MovieList title="Airing Today" movies={airingTodayShows} />
+          <MovieList title="On the Air" movies={onTheAirShows} />
+          <MovieList title="Popular Shows" movies={popularShows} />
+          <MovieList title="Top Rated Shows" movies={topRatedShows} />
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="bg-black">
+          <MovieList title="Now Playing" movies={nowPlayingMovies} />
+          <MovieList title="Upcoming Movies" movies={upcomingMovies} />
+          <MovieList title="Hollywood Movies" movies={popularMovies} />
+        </div>
+      </>
+    );
+  }
 };
 
 export default SecondaryContainer;

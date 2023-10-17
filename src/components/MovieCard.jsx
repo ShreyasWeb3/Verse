@@ -10,7 +10,7 @@ const MovieCard = ({
   return (
     <div>
       <img
-        className="mr-2 p-1 rounded-md cursor-pointer"
+        className="ml-2 mr-2 p-2 rounded-2xl cursor-pointer mb-6"
         src={`${IMAGE_CDN}/w500/${posterPath}`}
         alt={title}
         onClick={() => onMovieCardClick(movieId, title, movieInfo)}

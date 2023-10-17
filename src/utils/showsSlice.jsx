@@ -7,6 +7,7 @@ const ShowsSlice = createSlice({
     onTheAirShows: null,
     popularShows: null,
     topRatedShows: null,
+    shows:false,
   },
   reducers: {
     addAiringTodayShows: (state, action) => {
@@ -21,6 +22,9 @@ const ShowsSlice = createSlice({
     addTopRatedShows: (state, action) => {
       state.topRatedShows = action.payload;
     },
+    toggleShows: (state) => {
+      state.shows = !state.shows;
+    },
   },
 });
 
@@ -29,6 +33,7 @@ export const {
   addOnTheAirShows,
   addPopularShows,
   addTopRatedShows,
+  toggleShows,
 } = ShowsSlice.actions;
 
 export default ShowsSlice.reducer;

@@ -11,6 +11,7 @@ import { auth } from "../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
+import { toggleShows } from '../utils/showsSlice'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,6 +24,13 @@ const Header = () => {
       .catch((error) => {});
   };
 
+  const handleShowsToggle = () => {
+    dispatch(toggleShows())
+  }
+
+  const handleMoviesToggle = () => {
+    dispatch(toggleShows(false))
+  }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -49,10 +57,8 @@ const Header = () => {
           <div className="px-4"></div>
           <div className="flex items-center md:space-x-5 md:mr-6 ">
             <div className="flex space-x-4 justify-around">
-              <Link to="/shows">
-                <p className="cursor-pointer">Shows</p>
-              </Link>
-              <p>Movies</p>
+              <p className="cursor-pointer" onClick={handleShowsToggle}>Shows</p>
+              <p className="cursor-pointer" onClick={handleMoviesToggle}>Movies</p>
             </div>
             <div className="flex space-x-4 items-center">
               <Link to="/search">

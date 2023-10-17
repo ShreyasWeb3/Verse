@@ -105,7 +105,7 @@ const Login = () => {
           type="text"
           name="email"
           ref={email}
-          placeholder="Email or phone number"
+          placeholder="Email"
           className="p-2 m-1 bg-[#333] text-white rounded-[4px] placeholder:text-slate-300 placeholder:font-light placeholder:opacity-50  px-12 py-2 text-center"
         />
         <input

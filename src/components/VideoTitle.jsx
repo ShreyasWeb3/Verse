@@ -23,7 +23,11 @@ const VideoTitle = ({ title: propsTitle, overview: propsOverview }) => {
             target="_blank"
             rel="noreferrer"
           >
-            <button className="py-2 px-4 m-2 cursor-pointer bg-[#636264] opacity-90 right-0 top-[30%] md:top-[40%] lg:top-[60%] rounded-md absolute">
+            <button 
+            // className="py-2 px-4 m-2 cursor-pointer bg-[#636264] opacity-90 right-0 top-[67%] md:top-[74%] lg:top-[99%] rounded-md absolute"
+            className="absolute top-[67%] md:top-[74%] lg:top-[800px] right-4 px-2 py-1 bg-[#636264] cursor-pointer hover:opacity-80 text-white rounded-md z-10"
+
+            >
               <FontAwesomeIcon className="px-2" icon={faCloudArrowDown} />
               Download
             </button>
